@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Thumbnail AI — Инструкция по установке</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --surface: #0A0A0A;
+    --elevated: #1A1A1A;
+    --gold: #C9A063;
+    --gold-bright: #D4AF6A;
+    --green: #4A7C59;
+    --red: #8B4444;
+    --white: #FFFFFF;
+    --muted: rgba(255,255,255,0.5);
+    --border: rgba(201,160,99,0.2);
+    --gradient-gold: linear-gradient(135deg, #D4AF6A, #C9A063);
+    --gradient-warm: linear-gradient(160deg, #1A1410 0%, #0A0A0A 100%);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--gradient-warm);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 40px 60px;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .hero-title span { color: var(--gold); }
+
+  .hero-subtitle {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 16px auto 0;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* ── STEP ── */
+  .step {
+    margin-bottom: 60px;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .step-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 52px;
+  }
+
+  .step-meta {}
+
+  .step-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .step-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--white);
+  }
+
+  .step-body {
+    padding-left: 72px;
+  }
+
+  .step-desc {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 60px 0;
+  }
+
+  /* ── CODE BLOCK ── */
+  .code-block {
+    background: var(--elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: rgba(201,160,99,0.06);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .code-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .copy-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  .copy-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .copy-btn.copied {
+    border-color: var(--green);
+    color: #6fba8a;
+  }
+
+  .code-content {
+    padding: 20px;
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .code-content .comment { color: rgba(201,160,99,0.5); }
+  .code-content .key { color: var(--gold); }
+  .code-content .val { color: #a8d8a8; }
+
+  /* ── PROMPT BLOCK ── */
+  .prompt-block {
+    background: var(--gradient-warm);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .prompt-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(201,160,99,0.05);
+  }
+
+  .prompt-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .prompt-tag {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,160,99,0.1);
+    border: 1px solid rgba(201,160,99,0.3);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 10px;
+  }
+
+  .prompt-content {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .info-box.tip {
+    background: rgba(74,124,89,0.1);
+    border: 1px solid rgba(74,124,89,0.3);
+  }
+
+  .info-box.warn {
+    background: rgba(139,68,68,0.1);
+    border: 1px solid rgba(139,68,68,0.3);
+  }
+
+  .info-box.note {
+    background: rgba(201,160,99,0.06);
+    border: 1px solid var(--border);
+  }
+
+  .info-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+
+  .info-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+  }
+
+  .info-text strong { color: var(--white); }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--gold);
+    margin-top: 1px;
+  }
+
+  /* ── FILE PATH ── */
+  .filepath {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--elevated);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-family: monospace;
+    font-size: 13px;
+    color: var(--gold);
+    margin: 8px 0;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .nav-item {
+    padding: 14px 18px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .nav-item:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  /* ── GRID ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    background: var(--gradient-warm);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .card-text {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .footer span { color: var(--gold); }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 640px) {
+    .hero-title { font-size: 48px; }
+    .container { padding: 40px 20px; }
+    .step-body { padding-left: 0; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .nav { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#install" class="nav-item">01 Установка</a>
+  <a href="#apikey" class="nav-item">02 API ключ</a>
+  <a href="#headshot" class="nav-item">03 Фото</a>
+  <a href="#brand" class="nav-item">04 Бренд-стиль</a>
+  <a href="#generate" class="nav-item">05 Генерация</a>
+  <a href="#prompts" class="nav-item">06 Промпты</a>
+  <a href="#tips" class="nav-item">07 Советы</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Вышка Лига · Инструкция</div>
+  <h1 class="hero-title">YouTube Thumbnail<br><span>AI-генерация</span></h1>
+  <p class="hero-subtitle">Полная инструкция по установке скилла и генерации профессиональных превью через Claude + Gemini</p>
+</div>
+
+<div class="container">
+
+  <!-- OVERVIEW -->
+  <div style="margin-bottom:60px;">
+    <div class="section-label">Что это такое</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🤖 Как это работает</div>
+        <div class="card-text">Ты пишешь Claude тему видео → Claude сам продумывает 4 разных концепта → отправляет промпты в Gemini API → получаешь 4 готовых превью в стиле твоего бренда</div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚡ Что нужно</div>
+        <div class="card-text">Claude Code (приложение) + Gemini API ключ (бесплатно на aistudio.google.com) + 1 фото твоего лица + 15 минут на настройку</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STEP 1 -->
+  <div class="step" id="install">
+    <div class="step-header">
+      <div class="step-number">01</div>
+      <div class="step-meta">
+        <div class="step-label">Шаг первый</div>
+        <div class="step-title">Установка скилла</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Скачай и установи скилл для генерации превью. Он добавит все нужные скрипты в папку Claude.</p>
+
+      <div class="info-box note">
+        <div class="info-icon">ℹ️</div>
+        <div class="info-text">Убедись, что у тебя установлен <strong>Claude Code</strong> (claude.ai/download) и он хотя бы раз запускался.</div>
+      </div>
+
+      <p style="color:var(--muted);font-size:13px;margin-bottom:8px;">Открой Терминал и выполни команду:</p>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-label">Терминал</span>
+          <button class="copy-btn" onclick="copyCode(this, 'npx claude-thumbnails')">Копировать</button>
+        </div>
+        <div class="code-content">npx claude-thumbnails</div>
+      </div>
+
+      <div class="info-box tip">
+        <div class="info-icon">✅</div>
+        <div class="info-text">После установки появится папка <strong>.claude/skills/youtube-thumbnail/</strong> в твоей домашней директории. Это и есть скилл.</div>
+      </div>
+
+      <div class="info-box warn">
+        <div class="info-icon">⚠️</div>
+        <div class="info-text"><strong>Важно:</strong> если переустановишь скилл позже — твои фотографии из папки headshots удалятся. Храни оригиналы отдельно!</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STEP 2 -->
+  <div class="step" id="apikey">
+    <div class="step-header">
+      <div class="step-number">02</div>
+      <div class="step-meta">
+        <div class="step-label">Шаг второй</div>
+        <div class="step-title">Получи Gemini API ключ</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Генерация картинок идёт через Google Gemini. Ключ бесплатный — получить за 2 минуты.</p>
+
+      <ul class="checklist">
+        <li><div class="check-icon">1</div><span>Зайди на <strong style="color:var(--gold)">aistudio.google.com</strong></span></li>
+        <li><div class="check-icon">2</div><span>Нажми <strong>«Get API key»</strong> → <strong>«Create API key»</strong></span></li>
+        <li><div class="check-icon">3</div><span>Скопируй ключ — он выглядит как <code style="color:var(--gold)">AIzaSy...</code></span></li>
+        <li><div class="check-icon">4</div><span>Создай файл <code style="color:var(--gold)">.env</code> в папке своего проекта и вставь ключ</span></li>
+      </ul>
+
+      <p style="color:var(--muted);font-size:13px;margin-bottom:8px;">Содержимое файла .env:</p>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-label">.env</span>
+          <button class="copy-btn" onclick="copyCode(this, 'GEMINI_API_KEY=твой_ключ_сюда')">Копировать</button>
+        </div>
+        <div class="code-content">GEMINI_API_KEY=твой_ключ_сюда</div>
+      </div>
+
+      <div class="info-box note">
+        <div class="info-icon">💡</div>
+        <div class="info-text">Бесплатный план позволяет генерировать несколько десятков превью в день — для личного использования хватит с головой.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STEP 3 -->
+  <div class="step" id="headshot">
+    <div class="step-header">
+      <div class="step-number">03</div>
+      <div class="step-meta">
+        <div class="step-label">Шаг третий</div>
+        <div class="step-title">Добавь своё фото</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Скилл использует твоё фото как референс — Gemini рисует человека, похожего на тебя. Положи 1–3 фотографии в эту папку:</p>
+
+      <div class="filepath">📁 ~/.claude/skills/youtube-thumbnail/assets/headshots/</div>
+
+      <div class="grid-2" style="margin-top:20px;">
+        <div class="card">
+          <div class="card-title" style="color:var(--green)">✓ Хорошее фото</div>
+          <div class="card-text">
+            — Чёткое лицо, хорошее освещение<br>
+            — Ракурс «плечи и выше»<br>
+            — Нейтральный или тёмный фон<br>
+            — Студийное фото = лучший результат<br>
+            — Форматы: JPG, PNG
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:var(--red)">✗ Плохое фото</div>
+          <div class="card-text">
+            — Размытое или тёмное<br>
+            — Лицо занимает менее 30% кадра<br>
+            — Много людей в кадре<br>
+            — Селфи под странным углом<br>
+            — Очки/маска закрывают лицо
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box warn">
+        <div class="info-icon">⚠️</div>
+        <div class="info-text"><strong>Храни копии фото отдельно!</strong> При переустановке скилла папка headshots очищается. Держи оригиналы в другом месте и копируй при необходимости.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STEP 4 -->
+  <div class="step" id="brand">
+    <div class="step-header">
+      <div class="step-number">04</div>
+      <div class="step-meta">
+        <div class="step-label">Шаг четвёртый</div>
+        <div class="step-title">Настрой бренд-стиль</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Файл <code style="color:var(--gold)">brand-style.md</code> автоматически добавляется к каждому промпту. Именно он делает все превью в едином стиле твоего бренда.</p>
+
+      <div class="filepath">📄 ~/.claude/skills/youtube-thumbnail/brand-style.md</div>
+
+      <p style="margin-top:20px;margin-bottom:12px;color:rgba(255,255,255,0.75);">Попроси Claude создать этот файл — просто скопируй и отправь ему этот промпт:</p>
+
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div style="display:flex;align-items:center;">
+            <span class="prompt-tag">Промпт</span>
+            <span class="prompt-title">Создание brand-style.md</span>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'brand-prompt')">Копировать</button>
+        </div>
+        <div class="prompt-content" id="brand-prompt">Создай файл brand-style.md для скилла генерации YouTube превью.
+
+Путь файла: ~/.claude/skills/youtube-thumbnail/brand-style.md
+
+Мой бренд:
+- Название: [НАЗВАНИЕ ТВОЕГО БРЕНДА]
+- Основной цвет: [например: золотой #C9A063 / синий #1a73e8]
+- Фоновый цвет: [например: чёрный #000000]
+- Стиль: [например: премиум, тёмный, luxury / яркий, энергичный / минимализм]
+- Шрифт заголовков: [например: Bebas Neue, Impact, Montserrat]
+- Целевая аудитория: [например: предприниматели, эксперты онлайн-школ]
+- Тематика канала: [например: бизнес, AI, маркетинг, личностный рост]
+
+Дополнительно про визуальный стиль:
+[Опиши всё что важно — примеры каналов на которые равняешься, настроение, что должно быть в превью]</div>
+      </div>
+
+      <div class="info-box tip">
+        <div class="info-icon">💡</div>
+        <div class="info-text">Чем подробнее опишешь свой бренд — тем точнее будут превью. Можно скинуть Claude скриншоты своих старых превью или превью конкурентов как референс.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STEP 5 -->
+  <div class="step" id="generate">
+    <div class="step-header">
+      <div class="step-number">05</div>
+      <div class="step-meta">
+        <div class="step-label">Шаг пятый</div>
+        <div class="step-title">Генерация превью</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">Когда всё настроено — открой Claude Code и используй один из промптов ниже. Claude сам сделает всё остальное: продумает концепты, скачает референсы, сгенерирует 4 варианта и покажет сравнение.</p>
+
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div style="display:flex;align-items:center;">
+            <span class="prompt-tag">Промпт</span>
+            <span class="prompt-title">Базовый запрос на генерацию</span>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'basic-prompt')">Копировать</button>
+        </div>
+        <div class="prompt-content" id="basic-prompt">Сгенерируй 4 варианта YouTube превью для видео на тему:
+
+«[ТЕМА ТВОЕГО ВИДЕО]»
+
+Название видео: «[ТОЧНОЕ НАЗВАНИЕ]»
+
+Используй скилл youtube-thumbnail. Хедшот возьми из папки headshots — выбери лучший для этой темы.</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div style="display:flex;align-items:center;">
+            <span class="prompt-tag">Промпт</span>
+            <span class="prompt-title">Расширенный запрос с деталями</span>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'extended-prompt')">Копировать</button>
+        </div>
+        <div class="prompt-content" id="extended-prompt">Сгенерируй 4 варианта YouTube превью.
+
+Тема видео: «[ТЕМА]»
+Название: «[НАЗВАНИЕ]»
+
+Дополнительно:
+- В превью должен быть логотип: [название инструмента/бренда, например: ChatGPT, Notion, Excel]
+- Акцент на цифру/результат: [например: ×10, ₴500К, 30 дней]
+- Эмоция на лице: [уверенность / удивление / энтузиазм / серьёзность]
+- Стиль: [тёмный премиум / яркий / минималистичный]
+
+Используй скилл youtube-thumbnail.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STEP 6 -->
+  <div class="step" id="prompts">
+    <div class="step-header">
+      <div class="step-number">06</div>
+      <div class="step-meta">
+        <div class="step-label">Шаг шестой</div>
+        <div class="step-title">Итерации и правки</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p class="step-desc">После того как Claude покажет 4 варианта — можешь выбрать понравившийся и попросить доработать. Вот готовые промпты для итераций:</p>
+
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div style="display:flex;align-items:center;">
+            <span class="prompt-tag">Промпт</span>
+            <span class="prompt-title">Доработка выбранного варианта</span>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'iterate-prompt')">Копировать</button>
+        </div>
+        <div class="prompt-content" id="iterate-prompt">Мне понравился вариант [A / B / C / D].
+
+Сделай доработанную версию с изменениями:
+- [например: поменяй текст на «СЕКРЕТ УСПЕХА»]
+- [например: сделай фон темнее]
+- [например: добавь больше золотого акцента]
+- [например: лицо должно смотреть прямо в камеру]</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div style="display:flex;align-items:center;">
+            <span class="prompt-tag">Промпт</span>
+            <span class="prompt-title">Объединить элементы из разных вариантов</span>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'mix-prompt')">Копировать</button>
+        </div>
+        <div class="prompt-content" id="mix-prompt">Сделай новый вариант:
+- Стиль и цвета как в варианте [B]
+- Текст и расположение как в варианте [A]
+- Выражение лица как в варианте [D]</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STEP 7 - TIPS -->
+  <div class="step" id="tips">
+    <div class="step-header">
+      <div class="step-number">07</div>
+      <div class="step-meta">
+        <div class="step-label">Профи-советы</div>
+        <div class="step-title">Как получать лучший результат</div>
+      </div>
+    </div>
+    <div class="step-body">
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">📸 По фотографиям</div>
+          <div class="card-text">
+            Добавь 3–5 разных фото: студийное, с выступления, с микрофоном, разные эмоции. Укажи Claude какое взять для конкретной темы — это даёт точность.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🎯 По теме</div>
+          <div class="card-text">
+            Чем конкретнее тема — тем лучше концепты. «Как я вышел на ₴500К за 3 месяца» работает лучше чем просто «Деньги». Добавляй цифры и результаты.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🔄 По итерациям</div>
+          <div class="card-text">
+            Не жди идеала с первого раза. Выбери лучший из 4 → попроси 2–3 правки. Обычно v2-v3 уже готовы к публикации.
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🗂️ По организации</div>
+          <div class="card-text">
+            Все превью сохраняются в workspace/[дата]/thumbnails/. Там же comparison.png — сравнение всех 4 вариантов сразу.
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box note" style="margin-top:8px;">
+        <div class="info-icon">🚀</div>
+        <div class="info-text"><strong>Лайфхак:</strong> Финальное превью можно доработать в Figma или Canva — добавить точный шрифт бренда, подправить текст. Gemini даёт отличную базу, финальный штрих делаешь сам за 5 минут.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TROUBLESHOOTING -->
+  <div style="margin-bottom:60px;">
+    <div class="section-label">Частые проблемы</div>
+    <div class="code-block">
+      <div class="code-header">
+        <span class="code-label">Проблема → Решение</span>
+      </div>
+      <div class="code-content" style="font-family:'Inter Tight',sans-serif;font-size:14px;line-height:2;">
+<span class="key">«ModuleNotFoundError: No module named google»</span>
+→ Выполни: <span class="val">python3 -m pip install google-genai Pillow</span>
+
+<span class="key">«GEMINI_API_KEY not set»</span>
+→ Проверь файл .env — он должен быть в папке проекта где запускаешь Claude
+
+<span class="key">«Could not process image»</span>
+→ Файл в headshots повреждён или не является фото. Удали и добавь заново
+
+<span class="key">Фотографии пропали из headshots</span>
+→ Был переустановлен скилл. Храни оригиналы отдельно, скопируй заново
+
+<span class="key">Лицо не похоже на тебя</span>
+→ Используй студийное фото с хорошим светом. Добавь несколько фото разных ракурсов
+
+<span class="key">Текст на превью нечитабельный</span>
+→ Это ограничение Gemini. Доработай текст в Figma/Canva поверх готового изображения
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Создано для учеников <span>Вышка Лига</span> · YouTube Thumbnail AI Skill
+</div>
+
+<script>
+  function copyCode(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ Скопировано';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Копировать';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  function copyPrompt(btn, id) {
+    const el = document.getElementById(id);
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ Скопировано';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Копировать';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  // Highlight active nav on scroll
+  const sections = document.querySelectorAll('[id]');
+  const navItems = document.querySelectorAll('.nav-item');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navItems.forEach(n => {
+      n.style.color = n.getAttribute('href') === '#' + current
+        ? 'var(--gold)' : '';
+      n.style.borderBottomColor = n.getAttribute('href') === '#' + current
+        ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
