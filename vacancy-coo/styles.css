@@ -1,0 +1,1345 @@
+/* ===================================
+   COO VACANCY - Вища Ліга
+   Design System: Bebas Neue + Inter Tight
+   =================================== */
+
+/* --- Google Fonts (imported via HTML) --- */
+
+/* --- CSS Variables --- */
+:root {
+    /* Backgrounds */
+    --black:          #000000;
+    --surface:        #0A0A0A;
+    --elevated:       #1A1A1A;
+
+    /* Gold palette */
+    --gold:           #C9A063;
+    --gold-bright:    #D4AF6A;
+    --gold-gradient:  linear-gradient(135deg, #D4AF6A, #C9A063);
+
+    /* Text */
+    --white:          #ffffff;
+    --text-muted:     rgba(255, 255, 255, 0.5);
+    --cream:          rgba(255, 255, 255, 0.85);
+
+    /* Borders */
+    --border:         rgba(201, 160, 99, 0.2);
+    --border-hover:   rgba(201, 160, 99, 0.6);
+
+    /* Card */
+    --card-bg:        linear-gradient(160deg, #1A1410 0%, #0A0A0A 100%);
+
+    /* Accents */
+    --green:          #4A7C59;
+    --red:            #8B4444;
+
+    /* Legacy aliases (kept for compatibility) */
+    --dark-bg:        var(--surface);
+    --dark-gray:      #141414;
+    --medium-gray:    var(--elevated);
+    --light-gray:     #2a2a2a;
+    --text-gray:      var(--text-muted);
+    --off-white:      #f5f5f5;
+    --gold-light:     var(--gold-bright);
+    --gold-dark:      #a68b4b;
+
+    /* Fonts */
+    --font-display:   'Bebas Neue', 'Impact', sans-serif;
+    --font-body:      'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-main:      var(--font-body);
+
+    /* Layout */
+    --section-padding: 120px;
+    --container-width: 1200px;
+    --radius:          12px;
+    --transition:      0.3s ease;
+}
+
+/* --- Reset --- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    background-color: var(--black);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Container --- */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* --- Buttons --- */
+.cta-button {
+    display: inline-block;
+    padding: 18px 48px;
+    background: var(--gold-gradient);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(201, 160, 99, 0.35);
+}
+
+.cta-button.large {
+    padding: 22px 60px;
+    font-size: 1rem;
+}
+
+/* --- Section Labels (UPPERCASE SMALL) --- */
+.section-label {
+    font-family: var(--font-body) !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    color: var(--gold) !important;
+}
+
+/* --- Section Titles — Bebas Neue --- */
+.section-title {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+}
+
+.section-title-caps {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-title-center {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-title-gold {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    font-family: var(--font-body);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 3rem;
+}
+
+/* --- Image Placeholders --- */
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    background: var(--elevated);
+    border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    border-radius: var(--radius);
+}
+
+.image-placeholder.dark {
+    background: #0d0d0d;
+}
+
+/* Project Photo */
+.project-photo {
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+/* Expert Photo */
+.expert-img {
+    width: 100%;
+    height: auto;
+    min-height: 450px;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+/* ===================================
+   HERO
+   =================================== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: var(--black);
+    overflow: hidden;
+}
+
+.hero-lights {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201, 160, 99, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 25% 25%, rgba(201, 160, 99, 0.07) 0%, transparent 45%),
+        radial-gradient(ellipse 60% 40% at 75% 25%, rgba(201, 160, 99, 0.07) 0%, transparent 45%);
+    pointer-events: none;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 1;
+    padding: 0 24px;
+}
+
+.hero-logo {
+    margin-bottom: 2rem;
+}
+
+/* Logo uses Bebas Neue — applied via inline style in HTML too */
+.logo-text {
+    font-family: var(--font-display);
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    line-height: 1.0;
+}
+
+.logo-text.logo-accent {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.logo-text.small {
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+    display: inline;
+}
+
+.hero-title {
+    font-family: var(--font-body);
+    font-size: 1.375rem;
+    font-weight: 500;
+    margin-bottom: 0.875rem;
+    letter-spacing: 0.01em;
+    color: var(--cream);
+}
+
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+    50%       { opacity: 1;   transform: scaleY(1); }
+}
+
+/* ===================================
+   ABOUT
+   =================================== */
+.about {
+    padding: var(--section-padding) 0;
+    background: var(--surface);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-content {
+    padding-left: 2rem;
+}
+
+.about-lead {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--cream);
+    margin-bottom: 2rem;
+    line-height: 1.75;
+}
+
+.stats-row {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.stat-item {
+    text-align: left;
+}
+
+/* Stat numbers — Bebas Neue + gold gradient */
+.stat-number {
+    font-family: var(--font-display);
+    display: block;
+    font-size: 3rem;
+    font-weight: 400;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.about-list {
+    margin-bottom: 2rem;
+}
+
+.about-list li {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--cream);
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.about-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+}
+
+.about-alumni {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 2rem;
+}
+
+.about-alumni strong {
+    color: var(--gold);
+}
+
+.about-quote {
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+}
+
+.about-quote p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--cream);
+    font-style: italic;
+}
+
+/* ===================================
+   EXPERT
+   =================================== */
+.expert {
+    padding: var(--section-padding) 0;
+    background: var(--black);
+}
+
+.expert-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3rem;
+}
+
+.expert-photo .image-placeholder {
+    min-height: 450px;
+}
+
+.expert-name {
+    font-family: var(--font-body);
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.expert-instagram {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--gold-gradient);
+    border-radius: 8px;
+    color: var(--black);
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.expert-instagram:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(201, 160, 99, 0.45);
+}
+
+.expert-instagram svg {
+    stroke: var(--black);
+}
+
+.expert-lead {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.achievement-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: var(--transition);
+}
+
+.achievement-card:hover {
+    border-color: var(--border-hover);
+}
+
+.achievement-link {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.achievement-link:hover {
+    background: linear-gradient(160deg, rgba(201, 160, 99, 0.08) 0%, #0A0A0A 100%);
+}
+
+/* Achievement numbers — Bebas Neue */
+.achievement-number {
+    font-family: var(--font-display);
+    display: block;
+    font-size: 2.25rem;
+    font-weight: 400;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.375rem;
+    line-height: 1;
+}
+
+.achievement-card p {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* ===================================
+   WHY OPEN
+   =================================== */
+.why-open {
+    padding: var(--section-padding) 0;
+    background: var(--surface);
+}
+
+.why-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.why-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    position: relative;
+    transition: var(--transition);
+}
+
+.why-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+}
+
+/* Section numbers (01/02/03) — Bebas Neue, large, gold */
+.why-number {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 400;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.35;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.why-card h3 {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--white);
+}
+
+.why-card p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* ===================================
+   TEAM
+   =================================== */
+.team {
+    padding: var(--section-padding) 0;
+    background: var(--black);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+    margin-top: 3rem;
+}
+
+.team-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+}
+
+.team-card:hover {
+    border-color: var(--border-hover);
+}
+
+.team-card.highlight {
+    border-color: rgba(201, 160, 99, 0.5);
+    background: linear-gradient(160deg, rgba(201, 160, 99, 0.08) 0%, #0A0A0A 100%);
+}
+
+.team-role {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.team-card p {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.team-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--gold-gradient);
+    color: var(--black);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* ===================================
+   RESPONSIBILITIES
+   =================================== */
+.responsibilities {
+    padding: var(--section-padding) 0;
+    background: var(--surface);
+}
+
+.resp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.resp-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.resp-card:hover {
+    border-color: var(--border-hover);
+}
+
+.resp-title {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--white);
+}
+
+.resp-list li {
+    font-family: var(--font-body);
+    color: var(--cream);
+    padding: 0.625rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 14px;
+}
+
+.resp-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+}
+
+/* ===================================
+   REQUIREMENTS
+   =================================== */
+.requirements {
+    padding: var(--section-padding) 0;
+    background: var(--black);
+}
+
+.req-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.req-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+}
+
+.req-card.secondary {
+    background: linear-gradient(160deg, #131310 0%, #0A0A0A 100%);
+}
+
+.req-title {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--gold);
+}
+
+.req-list li {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--cream);
+    padding: 0.625rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+}
+
+.req-list li:last-child {
+    border-bottom: none;
+}
+
+.req-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+}
+
+.req-card.secondary .req-list li::before {
+    content: "+";
+}
+
+/* ===================================
+   NOT FOR
+   =================================== */
+.not-for {
+    padding: var(--section-padding) 0;
+    background: var(--surface);
+}
+
+.notfor-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 3rem;
+}
+
+.notfor-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.notfor-card:hover {
+    border-color: rgba(139, 68, 68, 0.5);
+}
+
+.notfor-icon {
+    display: block;
+    font-size: 1.75rem;
+    color: var(--red);
+    margin-bottom: 1rem;
+}
+
+.notfor-card p {
+    font-family: var(--font-body);
+    color: var(--cream);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ===================================
+   BENEFITS
+   =================================== */
+.benefits {
+    padding: var(--section-padding) 0;
+    background: var(--black);
+}
+
+/* Benefits section title — Bebas Neue */
+.section-title-benefits {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title-benefits span {
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin: 0 auto 3rem;
+}
+
+.benefit-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.benefit-card:hover {
+    border-color: var(--border-hover);
+}
+
+.benefit-icon-box {
+    width: 64px;
+    height: 64px;
+    background: var(--gold-gradient);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--black);
+}
+
+.benefit-icon-box svg {
+    stroke: var(--black);
+}
+
+.benefit-title {
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--white);
+}
+
+.benefit-card p {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.salary-card {
+    max-width: 480px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(201, 160, 99, 0.12) 0%, #0A0A0A 100%);
+    border: 2px solid rgba(201, 160, 99, 0.5);
+    border-radius: 16px;
+    padding: 3rem;
+    text-align: center;
+}
+
+.salary-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+}
+
+/* Salary amount — Bebas Neue */
+.salary-amount {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 400;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.salary-note {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* ===================================
+   FIRST MONTHS
+   =================================== */
+.first-months {
+    padding: var(--section-padding) 0;
+    background: var(--surface);
+}
+
+.timeline {
+    max-width: 680px;
+    margin: 3rem auto 0;
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 24px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 1.75rem;
+    position: relative;
+}
+
+.timeline-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 10px;
+    margin-left: 20px;
+    box-shadow: 0 0 16px rgba(201, 160, 99, 0.6);
+    z-index: 1;
+}
+
+.timeline-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Timeline numbers — Bebas Neue */
+.timeline-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.timeline-content p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--cream);
+}
+
+/* ===================================
+   CONDITIONS
+   =================================== */
+.conditions {
+    padding: var(--section-padding) 0;
+    background: var(--black);
+}
+
+.conditions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 3rem;
+}
+
+.condition-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.condition-card:hover {
+    border-color: var(--border-hover);
+}
+
+.condition-icon {
+    display: block;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.condition-card h3 {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+}
+
+.condition-card p {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* ===================================
+   PROCESS
+   =================================== */
+.process {
+    padding: var(--section-padding) 0;
+    background: var(--surface);
+}
+
+.process-steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.process-step {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    min-width: 160px;
+    transition: var(--transition);
+}
+
+.process-step:hover {
+    border-color: var(--border-hover);
+}
+
+/* Step numbers — Bebas Neue inside circle */
+.step-number {
+    font-family: var(--font-display);
+    width: 44px;
+    height: 44px;
+    background: var(--gold-gradient);
+    color: var(--black);
+    font-size: 1.5rem;
+    font-weight: 400;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    line-height: 1;
+}
+
+.process-step p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--cream);
+}
+
+.process-arrow {
+    color: var(--gold);
+    font-size: 1.25rem;
+    opacity: 0.6;
+}
+
+/* ===================================
+   CTA SECTION
+   =================================== */
+.cta-section {
+    padding: var(--section-padding) 0;
+    background: linear-gradient(180deg, var(--black) 0%, var(--surface) 50%, var(--black) 100%);
+    position: relative;
+}
+
+.cta-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(201, 160, 99, 0.07) 0%, transparent 55%);
+    pointer-events: none;
+}
+
+.cta-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* CTA title — Bebas Neue */
+.cta-title {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.05;
+    margin-bottom: 2rem;
+    color: var(--white);
+}
+
+.cta-contact {
+    margin-top: 2rem;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.cta-contact a {
+    color: var(--gold);
+}
+
+.cta-contact a:hover {
+    text-decoration: underline;
+}
+
+.cta-note {
+    margin-top: 1rem;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.cta-note strong {
+    color: var(--gold);
+}
+
+/* ===================================
+   FOOTER
+   =================================== */
+.footer {
+    padding: 3rem 0;
+    background: var(--black);
+    border-top: 1px solid var(--border);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.footer-logo {
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+}
+
+.footer-social {
+    display: flex;
+    gap: 2rem;
+}
+
+.social-link {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    color: var(--gold);
+}
+
+.footer-copyright {
+    font-family: var(--font-body);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 1024px) {
+    :root {
+        --section-padding: 80px;
+    }
+
+    .logo-text {
+        font-size: 4.5rem;
+    }
+
+    .about-grid,
+    .expert-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .about-content {
+        padding-left: 0;
+    }
+
+    .why-cards,
+    .resp-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .req-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .notfor-grid,
+    .conditions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-steps {
+        flex-direction: column;
+    }
+
+    .process-arrow {
+        transform: rotate(90deg);
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --section-padding: 60px;
+    }
+
+    .logo-text {
+        font-size: 3.25rem;
+        letter-spacing: 0.15em;
+    }
+
+    .hero-title {
+        font-size: 1.125rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .section-title,
+    .section-title-center,
+    .section-title-gold,
+    .section-title-benefits,
+    .cta-title {
+        font-size: 32px;
+    }
+
+    .stats-row {
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .notfor-grid,
+    .conditions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .salary-amount {
+        font-size: 3rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .logo-text {
+        font-size: 2.5rem;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-button {
+        padding: 16px 32px;
+    }
+}
